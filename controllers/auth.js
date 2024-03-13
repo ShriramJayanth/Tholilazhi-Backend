@@ -19,25 +19,24 @@ export const CUSTOMERregister = async (req, res) => {
       workers
     } = req.body;
 
-    // const salt = await bcrypt.genSalt();
-    // const passwordHash = await bcrypt.hash(password, salt);
+    const salt = await bcrypt.genSalt();
+    const passwordHash = await bcrypt.hash(password, salt);
 
-    // const newUser = new Customer({
-    //   firstName,
-    //   lastName,
-    //   phone,
-    //   age,
-    //   gender,
-    //   email,
-    //   password:passwordHash,
-    //   address,
-    //   occupation,
-    //   workers
-    // });
-    // const savedUser = await newUser.save();
-    res.status(200).json({name:firstName});
+    const newUser = new Customer({
+      firstName,
+      lastName,
+      phone,
+      age,
+      gender,
+      email,
+      password:passwordHash,
+      address,
+      occupation,
+      workers
+    });
+    const savedUser = await newUser.save();
+    res.status(203).json({message:"user registered successfully"});
   } catch (err) {
-    // console.log("\n\n\n"+email+"\n\n\n\n")
     res.status(500).json({ error: "there is an error" });
   }
 };
@@ -108,7 +107,6 @@ export const WORKERregister = async (req, res) => {
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);
   } catch (err) {
-    console.log("\n\n\n"+email+"\n\n\n\n")
     res.status(500).json({ error: email });
   }
 };
