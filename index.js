@@ -2,9 +2,16 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import Customer from "./models/Customer.js";
+import Worker from "./models/Worker.js";
+import { CustData,WorkData } from "./data/FakeData.js";
 
 const app = express();
 const PORT = 3001;
+
+
+// Customer.insertMany(CustData);
+// Worker.insertMany(WorkData);
 
 dotenv.config();
 app.use(express.json());
