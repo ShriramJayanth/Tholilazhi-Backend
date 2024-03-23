@@ -16,7 +16,12 @@ const WorkerSchema = new mongoose.Schema(
     },
     country:String,
     state:String,
-    distric:String,
+    district:String,
+    desc:String,
+    status:{
+      type:Boolean,
+      default:true
+    },
     phone:Number,
     age:Number,
     language:String,

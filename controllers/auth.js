@@ -9,14 +9,13 @@ export const CUSTOMERregister = async (req, res) => {
     const {
       firstName,
       lastName,
-      phone,
+      phoneNo,
       age,
       gender,
       email,
       password,
       address,
       occupation,
-      workers
     } = req.body;
 
     const salt = await bcrypt.genSalt();
@@ -25,19 +24,19 @@ export const CUSTOMERregister = async (req, res) => {
     const newUser = new Customer({
       firstName,
       lastName,
-      phone,
+      phone:phoneNo,
       age,
       gender,
       email,
       password:passwordHash,
       address,
       occupation,
-      workers
+      workers:[]
     });
     const savedUser = await newUser.save();
     res.status(203).json({message:"user registered successfully"});
   } catch (err) {
-    res.status(500).json({ error: "there is an error" });
+    res.status(203).json(err);
   }
 };
 
@@ -46,10 +45,10 @@ export const CUSTOMERlogin = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await Customer.findOne({ email: email });
-    if (!user) return res.status(400).json({ msg: "User does not exist. " });
+    if (!user) return res.status(201).json({ msg: "User does not exist. " });
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ msg: "Invalid credentials. " });
+    if (!isMatch) return res.status(202).json({ msg: "Invalid credentials. " });
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     delete user.password;

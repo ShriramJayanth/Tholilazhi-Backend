@@ -7,22 +7,22 @@ import Worker from "./models/Worker.js";
 import { CustData,WorkData } from "./data/FakeData.js";
 import CustomerAuthRoutes  from "./routes/CustomerAuth.js";
 import WorkerAuthRoutes from "./routes/WorkerAuth.js";
-import CustomerRoutes from "./routes/CustomerBookings.js";
+import CustomerRoutes from "./routes/Customer.js";
 const app = express();
 const PORT = 3001;
 app.use(express.json());
-
-app.use("/CAuth",CustomerAuthRoutes);
-app.use("/WAuth",WorkerAuthRoutes);
-app.use("/Cbookings",CustomerRoutes);
-
+app.use(cors({ origin: 'http://localhost:3000' }))
 
 // Customer.insertMany(CustData);
 // Worker.insertMany(WorkData);
 
 dotenv.config();
 app.use(express.json());
-app.use(cors());
+
+
+app.use("/CAuth",CustomerAuthRoutes);
+app.use("/WAuth",WorkerAuthRoutes);
+app.use("/Customer",CustomerRoutes);
 
 
 
