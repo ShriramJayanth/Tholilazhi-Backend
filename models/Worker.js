@@ -17,7 +17,10 @@ const WorkerSchema = new mongoose.Schema(
     country:String,
     state:String,
     district:String,
-    desc:String,
+    desc:{
+      type:String,
+      default:"Experienced domestic worker specializing in thorough cleaning, precise sweeping, and meticulous dishwashing"
+    },
     status:{
       type:Boolean,
       default:true

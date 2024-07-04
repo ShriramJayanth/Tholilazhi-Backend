@@ -66,15 +66,15 @@ export const WORKERregister = async (req, res) => {
       lastName,
       country,
       state,
-      distric,
-      phone,
+      district,
+      phoneNo,
       age,
       language,
       gender,
       email,
       password,
       skillset,
-      exp,
+      experience,
       customers,
       hrate,
       wrate,
@@ -89,24 +89,24 @@ export const WORKERregister = async (req, res) => {
       lastName,
       country,
       state,
-      distric,
-      phone,
+      district,
+      phone:phoneNo,
       age,
       language,
       gender,
       email,
       password:passwordHash,
       skillset,
-      exp,
+      exp:experience,
       customers,
       hrate,
       wrate,
       mrate
     });
     const savedUser = await newUser.save();
-    res.status(201).json(savedUser);
+    res.status(203).json({message:"user registered successfully"});
   } catch (err) {
-    res.status(500).json({ error: email });
+    res.status(200).json({ error: err });
   }
 };
 

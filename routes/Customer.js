@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post("/bookings",getCustomerBookings);
 router.post("/deletebooking",DeleteBooking);
-router.get("/Workers",getWorkers);
+router.post("/Workers",getWorkers);
 router.put("/book",bookWorker);
 
 export default router;

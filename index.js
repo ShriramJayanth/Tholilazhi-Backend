@@ -8,34 +8,21 @@ import { CustData,WorkData } from "./data/FakeData.js";
 import CustomerAuthRoutes  from "./routes/CustomerAuth.js";
 import WorkerAuthRoutes from "./routes/WorkerAuth.js";
 import CustomerRoutes from "./routes/Customer.js";
+import WorkerRoutes from "./routes/Worker.js";
 const app = express();
 const PORT = 3001;
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:3000' }))
+app.use(cors());
 
 // Customer.insertMany(CustData);
 // Worker.insertMany(WorkData);
 
 dotenv.config();
-app.use(express.json());
-
 
 app.use("/CAuth",CustomerAuthRoutes);
 app.use("/WAuth",WorkerAuthRoutes);
 app.use("/Customer",CustomerRoutes);
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.use("/Worker",WorkerRoutes);
 
 mongoose.connect(process.env.MONGO_URL)
   .then(() => {
